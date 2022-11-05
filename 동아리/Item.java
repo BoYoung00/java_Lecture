@@ -2,9 +2,9 @@ package 동아리;
 
 //담을 데이터 표본
 public class Item {
-        String name;
-        int price;
-        int count;
+    String name;
+    int price;
+    int count;
 
     public Item(String name, int price, int count) { //객체생성 도와주는 거
         this.name = name;
@@ -18,7 +18,7 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
+    } //필드 초기화
 
     public int getPrice() {
         return price;

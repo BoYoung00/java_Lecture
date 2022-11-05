@@ -5,26 +5,15 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Shopping {
-    public static void main(String[] args) {
-        LinkedList<String> Carts = new LinkedList<>();
-        //제네릭 태그
+    Scanner in = new Scanner(System.in);
 
-        Shopping shopping = new Shopping();
-        int select = shopping.shoppingMenu();
+    LinkedList<Cart> Carts = new LinkedList<Cart>();
+    //제네릭 태그
 
-        while (true) {
-            if (select == 1){
-                String name = shopping.rentCart();
-                System.out.println(name);
-            }
-            else if (select == 2) {
-
-            }
-        }
+    public LinkedList<Cart> getCarts() {
+        return Carts;
     }
     public int shoppingMenu() {
-        Scanner in = new Scanner(System.in);
-
         System.out.println("------------------");
         System.out.println("1. 카트 임대");
         System.out.println("2. 카트 반납");
@@ -35,23 +24,78 @@ public class Shopping {
         return select;
     }
 
-    public String rentCart() {
-        Scanner in = new Scanner(System.in);
+    public Cart rentCart() {
 
         System.out.println("------------------");
-        System.out.printf("카트 소유자 이름 입력 : ");
+        System.out.printf("임대할 소유자 이름 입력 : ");
         String name = in.nextLine();
 
-        return name;
+        for (Cart cart : Carts) {
+            if (cart.getUser().equals(name)) {
+                return cart;
+            }
+        }
+        Cart cart = new Cart(name);
+        Carts.add(cart);
+        return cart;
     }
 
     public void returnCart(){
-        Scanner in = new Scanner(System.in);
-
         System.out.println("------------------");
         System.out.printf("반납할 카드 소유자 이름 입력 : ");
         String name = in.nextLine();
 
+        for (Cart cart : Carts) {
+            if (cart.getUser().equals(name)) {
+                Carts.remove(name);
+                break;
+            }
+        }
+    }
+
+    public int carMenu() {
+        System.out.println("1. 카트에 상품 추가");
+        System.out.println("2. 카트에 수량 추가");
+        System.out.println("3. 카트 상품 제거");
+        System.out.println("4. 카트 상품 출력");
+        System.out.println("5. 카트 관련 동작 종료");
+        System.out.printf("키트 동작 입력 : ");
+        int select = in.nextInt();
+
+        return select;
+    }
+
+    public void cartAction(Cart cart, int select) {
+        if (select == 1) {
+            System.out.println("------------------");
+            System.out.print("추가할 상품 이름 : ");
+            String name = in.nextLine();
+            System.out.print("추가할 상품 가격 : ");
+            int price = in.nextInt();
+            System.out.print("추가할 상품 수량 : ");
+            int count = in.nextInt();
+
+            cart.addCart(name, price, count);
+        } else if (select == 2) {
+            System.out.println("------------------");
+            System.out.print("추가할 상품 이름 : ");
+            String name = in.nextLine();
+            System.out.print("추가할 상품 수량 : ");
+            int count = in.nextInt();
+
+            cart.updateCart(name, count);
+        } else if (select == 3) {
+            System.out.println("------------------");
+            System.out.print("삭제할 상품 이름 : ");
+            String name = in.nextLine();
+
+            cart.removeCart(name);
+        } else if (select == 4) {
+            cart.printItems();
+
+        } else {
+            System.out.println("1~5 중에 선택해주세요.");
+        }
     }
 
 }

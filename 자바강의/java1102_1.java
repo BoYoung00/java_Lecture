@@ -1,3 +1,5 @@
+package 자바강의;
+
 public class java1102_1 {
     public static void main(String[] args) {
         String str = "  홍 길동    AB   CD   123  45";

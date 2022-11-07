@@ -1,3 +1,5 @@
+package 자바강의;
+
 import java.util.Scanner;
 
 public class java1102_3 {

@@ -5,23 +5,24 @@ public class Main {
         Shopping shopping = new Shopping();
 
         while (true) {
-            int select = shopping.shoppingMenu();
+            int shoppingmenu = shopping.shoppingMenu();
 
-            if (select == 1) {
+            if (shoppingmenu == 3) {
+                break;
+            }else if (shoppingmenu == 2) {
+                shopping.returnCart();
+            }
+            else {
                 Cart cart = shopping.rentCart();
                 while (true) {
-                    int select2 = shopping.carMenu();
+                    int cartmenu = shopping.carMenu();
 
-                    if (select2 == 5) {
+                    if (cartmenu == 5) {
                         break;
                     }
 
-                    shopping.cartAction(cart, select2);
+                    shopping.cartAction(cart, cartmenu);
                 }
-            } else if (select == 2) {
-                shopping.returnCart();
-            } else if (select == 3) {
-                break;
             }
         }
     }

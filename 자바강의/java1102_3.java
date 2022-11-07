@@ -11,8 +11,9 @@ public class java1102_3 {
         double banavg = 0;
 
         for (int i = 0; i < scores.length; i++) {
-            System.out.printf("%d번째 학생 점수 입력 : \n",i+1);
+            System.out.printf("<%d번째 학생 점수 입력>\n",i+1);
             for (int j=0; j <scores[i].length; j++) {
+                System.out.printf("%d번째 점수 : ",j+1);
                 scores[i][j] = in.nextDouble();
                 avg += (scores[i][j]) / scores[i].length;
             }

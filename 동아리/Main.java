@@ -19,7 +19,7 @@ public class Main {
                     shopping.cartAction(cart, select2);
                 }
             } else if (select == 2) {
-                shopping.rentCart();
+                shopping.returnCart();
             } else if (select == 3) {
                 break;
             }

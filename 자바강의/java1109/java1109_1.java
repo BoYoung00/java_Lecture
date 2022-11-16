@@ -1,4 +1,4 @@
-package 자바강의;
+package 자바강의.java1109;
 
 import java.util.ArrayList;
 import java.util.Scanner;

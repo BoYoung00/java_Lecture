@@ -1,4 +1,4 @@
-package 자바강의;
+package 자바강의.java1109;
 
 public class java1109_6 {
     public static void main(String[] args) {

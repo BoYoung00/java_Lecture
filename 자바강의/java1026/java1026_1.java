@@ -1,4 +1,4 @@
-package 자바강의;
+package 자바강의.java1026;
 
 import java.util.Scanner;
 

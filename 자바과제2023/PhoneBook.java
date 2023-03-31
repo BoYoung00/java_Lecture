@@ -66,14 +66,16 @@ class SaveSearch {
     }
 
     public void searchPhone() { //전화번호 검색 메서드
+        int i=1;
         for (Phone phone : pages) {
-            if (phone.getName().equals(name)) {
+            if(phone.getName().equals(name)) {
                 System.out.println("<<검색 결과>>");
                 System.out.println("이름 : " + phone.getName() + ",\t 전화번호 : " + phone.getNumber());
-                return;
-            } else {
+                break;
+            } else if (pages.size() == i) {
                 System.out.println("일치하는 이름이 없습니다.");
             }
+            i++;
         }
     }
 }

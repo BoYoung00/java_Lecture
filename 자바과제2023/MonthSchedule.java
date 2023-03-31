@@ -25,7 +25,6 @@ class Day {
         }
     }
 
-
     public int addScaheduleOverlap() { // 추가 일자 중복 확인
         int count = 1; // 두 if문이 다 해당이 안될 경우 1(yes)을 반환하기 위해 초기화
         while (true) {

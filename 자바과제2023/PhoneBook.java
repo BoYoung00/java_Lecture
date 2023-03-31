@@ -30,7 +30,7 @@ class Phone {
     }
 }
 
-class saveSearch {
+class SaveSearch {
     Scanner in = new Scanner(System.in);
     ArrayList<Phone> pages = new ArrayList<>();
     String name;
@@ -82,7 +82,7 @@ public class PhoneBook {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        saveSearch phone = new saveSearch();
+        SaveSearch phone = new SaveSearch();
 
         while (true) {
             System.out.println("------------------------------------------------");

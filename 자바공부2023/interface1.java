@@ -47,6 +47,3 @@ abstract class Fighter2 implements InterfaceName {
     }
 }
 
-public class interface1 {
-
-}

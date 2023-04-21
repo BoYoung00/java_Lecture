@@ -14,6 +14,22 @@ public class TreeSetTest {
 
         System.out.println(set1);
         System.out.println(set2);
+
+        TreeSet set3 = new TreeSet();
+        set3.add(new Integer(1)); // Intefer은 Comparable을 구현한 클래스이기 때문에 그냥 add 해줘도 된다
+        System.out.println(set3);
+        int [] score = {80,95,50,35,45,65,10,100};
+        for (int i = 0; i < score.length; i++) {
+            set3.add(new Integer(score[i]));
+        }
+        System.out.println("50보다 작은 값 : " + set3.headSet(50));
+        System.out.println("50보다 큰 값 : " + set3.tailSet(50));
+        System.out.println("40과 80사이의 값 : " + set3.subSet(40,80));
+
+        TreeSet set4 = new TreeSet();
+        set4.add("abc"); set4.add("def");set4.add("ghi");
+        System.out.println(set4.subSet("a", "d"));
+
     }
 }
 

@@ -1,5 +1,6 @@
 package 자바과제2023;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 interface IOperation {
@@ -43,7 +44,11 @@ class Operation implements IOperation {
 
 class OperationDemo {
     public static void main(String[] args) {
-        Operation oper = new Operation();
-        oper.modify();
+//        Operation oper = new Operation();
+//        oper.modify();
+
+        String str = "abc#def#ghi";
+        String[] splitStr = str.split("#");
+        System.out.println(Arrays.stream(splitStr).toList());
     }
 }

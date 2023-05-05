@@ -1,9 +1,6 @@
 package 자바과제2023;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 interface IOperation {
     void modify(); //수식입력
@@ -12,57 +9,91 @@ interface IOperation {
 }
 
 class Operation implements IOperation {
-    StringBuilder anOperand = new StringBuilder(); //피연산자(숫자)
-    StringBuilder arithmetic = new StringBuilder(); //연산자(문자)
     String input; //수식 입력 받기
-    String[] str; //수식 한 문자씩 자르기
+    Double[] anOperand;
+    Queue<Character> arithmetic = new LinkedList<Character>(); //연산자
     Scanner in = new Scanner(System.in);
+
 
     @Override
     public void modify() { //수식입력
         System.out.print("수식을 입력하세요 : ");
         input = in.nextLine(); // 수식 입력
-        str = input.split(""); //문자 하나씩 나누기
+        String[] operator = input.split("\\+|\\-|\\*|\\/"); // 연산자 만나면 나누기
+        anOperand = new Double[operator.length]; // 더블형 연산자 배열 크기 지정
+        
+        for (int i = 0; i < operator.length; i++) {
+            anOperand[i] = Double.parseDouble(operator[i]); //String 타입 연산자를 double로 변환하여 저장
+        }
+        System.out.println(Arrays.stream(anOperand).toList());
     }
 
     @Override
     public void operatorLocation() { //연산자 위치 반환
-        int cutIndex = 0;
-
-        for (int i = 0; i < input.length(); i++){
-            // 문자 중에 연산자를 찾으면 그 전부터 지금 문자까지 잘라서 저장
-            if(str[i].equals("*") || str[i].equals("/") || str[i].equals("+") || str[i].equals("-")) {
-//                double oper = Double.parseDouble(input.substring(cutIndex, i));
-                String oper = input.substring(cutIndex, i);
-                anOperand.append(oper); //피연산자
-                cutIndex = i + 1;
+        for (int i = 0; i < input.length(); i++) {
+            if(input.charAt(i)=='+') {
+                arithmetic.add('+');
+                continue;
             }
-            if( (i+1)==input.length()){
-                System.out.println(input.substring(cutIndex));
+            if(input.charAt(i)=='-') {
+                arithmetic.add('-');
+                continue;
+            }
+            if(input.charAt(i)=='/') {
+                arithmetic.add('/');
+                continue;
+            }
+            if(input.charAt(i)=='*') {
+                arithmetic.add('*');
+                continue;
             }
         }
+//        Iterator iter = arithmetic.iterator();
+//
+//        while(iter.hasNext())
+//            System.out.print(iter.next() + " ");
 
-//        for (int i = 0; i < input.length(); i++) {
-//            if (Character.isDigit(input.charAt(i))){ //문자가 숫자면
-//                anOperand.append(input.charAt(i));
-//            } else {
-//                arithmetic.append(input.charAt(i));
-//            }
-//        }
-//        System.out.println(anOperand);
-//        System.out.println(arithmetic);
     }
 
     @Override
     public void result() { //결과값 반환
+//        result = Double.parseDouble(anOperand[0]);
+        double result = 0;
 
+        for (int i = 1; i < anOperand.length; i++) {
+            try {
+                char arit = arithmetic.poll();
+                LinkedList list = (LinkedList) arithmetic;
+                if (list.indexOf('*') >= 0) {
+                    int cutIndex = list.indexOf('*');
+                    result = anOperand[cutIndex-1] * anOperand[cutIndex+1];
+                    anOperand[cutIndex-1] = result;
+
+                    if (arit == '+') {
+                        result += anOperand[i];
+                        continue;
+                    }
+                    if (arit == '-') {
+                        result -= anOperand[i];
+                        continue;
+                    }
+                }
+
+
+
+            } catch (Exception e) {
+                System.out.println("잘못된 수식입니다.");
+                break;
+            }
+        }
     }
 }
 
 class OperationDemo {
     public static void main(String[] args) {
-//        Operation oper = new Operation();
-//        oper.modify();
+        Operation oper = new Operation();
+        oper.modify();
+//        oper.operatorLocation();
 
 
     }

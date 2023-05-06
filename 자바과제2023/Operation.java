@@ -10,107 +10,145 @@ interface IOperation {
 
 class Operation implements IOperation {
     private String input; // 수식 입력 받기
-    private Double[] anOperand; // 피연산자
-    private LinkedList<Character> arithmetic = new LinkedList<Character>(); // 연산자
+    private LinkedList<Double> operResult; // 피연산자
+    private Queue<Character> operand; // 연산자
+    private double FinalResult; // 최종 결과값 저장용
     Scanner in = new Scanner(System.in);
+
+    public void setInput(String input) {
+        this.input = input;
+    }
 
     @Override
     public void modify() { //수식입력
-        System.out.print("수식을 입력하세요 : ");
-        input = in.nextLine(); // 수식 입력
-        String[] operator = input.split("\\+|\\-|\\*|\\/"); // 연산자 만나면 나누기
-        anOperand = new Double[operator.length]; // 더블형 연산자 배열 크기 지정
+        operand = new LinkedList<Character>(); // 초기화
+        operResult  = new LinkedList<Double>(); // 초기화
+
+        // 연산자 만나면 나눠서 피연산자만 저장
+        String[] operator = input.split("\\+|\\-|\\*|\\/");
 
         for (int i = 0; i < operator.length; i++) {
-            anOperand[i] = Double.parseDouble(operator[i]); //String 타입 연산자를 double로 변환하여 저장
+            //String 타입 연산자를 double로 변환하여 저장
+            operResult.add(Double.parseDouble(operator[i]));
         }
-        System.out.println(Arrays.stream(anOperand).toList());
     }
 
     @Override
-    public void operatorLocation() { //연산자 위치 반환
+    public void operatorLocation() { //연산자 위치 반환 (큐에 연산자 입력)
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == '+') {
-                arithmetic.add('+');
+                operand.add('+');
                 continue;
             }
             if (input.charAt(i) == '-') {
-                arithmetic.add('-');
+                operand.add('-');
                 continue;
             }
             if (input.charAt(i) == '/') {
-                arithmetic.add('/');
+                operand.add('/');
                 continue;
             }
             if (input.charAt(i) == '*') {
-                arithmetic.add('*');
-                continue;
+                operand.add('*');
             }
         }
-        Iterator iter = arithmetic.iterator();
+    }
 
-        while (iter.hasNext())
-            System.out.print(iter.next() + " ");
+    public void multiplication(int index) { //곱하기
+        double result = operResult.get(index) * operResult.get(index + 1); // *의 뒤에 숫자와 앞에 숫자를 곱함
+        operResult.set(index, result); // 그 결과값을 왼쪽 피연산자에 저장
+        operResult.remove(index + 1); // 오른쪽 피연산자 삭제
+        FinalResult = operResult.get(0); // 수식이 바로 끝날 수 있으므로 첫번째 피연산자 값 저장
+    }
 
+    public void division(int index) { //나누기
+        double result = operResult.get(index) / operResult.get(index + 1); // /의 뒤에 숫자와 앞에 숫자를 나눔
+        operResult.set(index, result); // 그 결과값을 왼쪽 피연산자에 저장
+        operResult.remove(index + 1); // 오른쪽 피연산자 삭제
+        FinalResult = operResult.get(0); // 수식이 바로 끝날 수 있으므로 첫번째 피연산자 값 저장
     }
 
     @Override
-    public void result() { //결과값 반환
-        double FinalResult = 0;
-        while (!arithmetic.isEmpty()) {
-            try {
-                // 우선 연산자 *, / 찾기
-                boolean mulbool = arithmetic.contains('*');
-                boolean divbool = arithmetic.contains('/');
-                if (mulbool || divbool) {
-                    int mulIndex = arithmetic.indexOf('*'); // *가 있는 곳의 index
-                    int divIndex = arithmetic.indexOf('/'); // /가 있는 곳의 index
-
-                    if (mulbool || (mulbool && divbool && mulIndex < divIndex) ) { // 연산자 *가 있을 때
-                        double result = anOperand[mulIndex - 1] * anOperand[mulIndex + 1]; // *의 뒤에 숫자와 앞에 숫자를 곱함
-                        anOperand[mulIndex - 1] = result; // 그 값을 *의 뒤에 값으로 저장
-                        arithmetic.remove(mulIndex); // *를 큐에서 삭제
-                        continue;
-                    }
-
-
-                }
-                // 우선 연산자 / 찾기
-//                if (arithmetic.contains('/')) {
-//
-//                    double result = anOperand[divIndex - 1] / anOperand[divIndex]; // /의 뒤에 숫자와 앞에 숫자를 나눔
-//                    anOperand[divIndex - 1] = result; // 그 값을 /의 뒤에 값으로 저장
-//                    arithmetic.remove(divIndex); // /를 큐에서 삭제
-//                    continue;
-//                }
-
-                FinalResult = anOperand[0]; //첫번째 피연산자는 그냥 넣어줌
-                for (int i = 1; i < anOperand.length; i++) {
-                    // 남은 +와 -를 큐를 이용하여 계산
-                    char arit = arithmetic.poll();
-                    if (arit == '+') {
-                        FinalResult += anOperand[i];
-                        continue;
-                    }
-                    if (arit == '-') {
-                        FinalResult -= anOperand[i];
-                        continue;
-                    }
-                } // for
-            } catch (Exception e) {
-                System.out.println("잘못된 수식입니다.");
+    public void result() { // 결과값 반환
+        FinalResult = 0;
+        boolean resultBool = false;
+        while (!operand.isEmpty()) {
+            // 맨 끝자리가 연산자면 오류
+            if (!(Character.isDigit(input.charAt(input.length()-1))))
                 break;
-            } //catch
+            resultBool = true;
+            LinkedList list = (LinkedList) operand;
+            // 우선 연산자 *, / 찾기
+            boolean mulbool = list.contains('*'); // * 존재 여부
+            boolean divbool = list.contains('/'); // / 존재 여부
+            int mulIndex = list.indexOf('*'); // *가 있는 곳의 index
+            int divIndex = list.indexOf('/'); // /가 있는 곳의 index
+
+            // *, / 연산자가 둘 다 존재할 경우
+            if (mulbool && divbool) {
+                if (mulIndex < divIndex) { // 연산자 *가 앞에(왼쪽)에 있을 때
+                    multiplication(mulIndex);
+                    list.remove(mulIndex); // *를 큐에서 삭제
+                    continue;
+                }
+                if (mulIndex > divIndex) { // 연산자 /가 앞에(왼쪽)에 있을 때
+                    division(divIndex);
+                    list.remove(divIndex); // /를 큐에서 삭제
+                    continue;
+                }
+            }
+            // 연산자 * 찾기
+            if (mulbool) {
+                multiplication(mulIndex);
+                list.remove(mulIndex); // *를 큐에서 삭제
+                continue;
+            }
+            // 연산자 / 찾기
+            if (divbool) {
+                division(divIndex);
+                list.remove(divIndex); // /를 큐에서 삭제
+                continue;
+            }
+            // *, / 연산자를 모두 계산했을 경우
+            FinalResult = operResult.get(0); // 첫번째 피연산자 저장
+            for (int i = 1; i < operResult.size(); i++) {
+                // 남은 +와 -를 큐를 이용하여 계산
+                char arit = operand.poll();
+                if (arit == '+') {
+                    FinalResult += operResult.get(i);
+                    continue;
+                }
+                if (arit == '-')
+                    FinalResult -= operResult.get(i);
+            } // for
         } //while
+        if (resultBool == false) { //아무 계산이 이루어지지 않았을 때
+            System.out.println("잘못된 수식입니다.");
+        } else {
+            System.out.println("결과 값 : " + FinalResult);
+        }
     }
 }
 
 class OperationDemo {
     public static void main(String[] args) {
         Operation oper = new Operation();
-        oper.modify();
-//        oper.operatorLocation();
+        Scanner in = new Scanner(System.in);
 
-
+        System.out.println("===== 사칙연산 계산기 (종료 : 0) =====");
+        while (true) {
+            System.out.print("수식을 입력하세요 : ");
+            String input = in.nextLine(); // 수식 입력
+            if (input.equals("0"))
+                break;
+            try {
+                oper.setInput(input);
+                oper.modify();
+                oper.operatorLocation();
+                oper.result();
+            } catch (Exception e) {
+                System.out.println("잘못된 수식입니다.");
+            }
+        }
     }
 }

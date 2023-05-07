@@ -1,7 +1,5 @@
 package 자바과제2023;
 
-import 자바공부2023.Array;
-
 import java.util.Arrays;
 import java.util.Scanner;
 

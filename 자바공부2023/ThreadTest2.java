@@ -2,6 +2,12 @@ package 자바공부2023;
 
 import javax.swing.*;
 
+
+// interrupt : 스레드에게 특정 상황이 발생했음을 알리기 위한 비동기 신호
+// void interrupt() : 대기상태(waiting)인 쓰레드를 실행대기(runnable) 상태로 만든다.
+//                    -> 쓰레드의 interrupted상태를 false에서 true로 변경
+// boolean isInterrupted() : interrupt 되어있는지 체크
+// static boolean interrupted() : 현재 쓰레드의 interrupt 상태를 알려주고, false로 초기화
 public class ThreadTest2 {
     public static void main(String[] args) {
         ThreadEx1 th1 = new ThreadEx1();

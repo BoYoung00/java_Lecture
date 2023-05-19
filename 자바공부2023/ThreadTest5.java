@@ -55,7 +55,7 @@ class Table {
             } catch (InterruptedException e) {}
         }
         dishes.add(dish);
-        notify();
+        notify(); // 대기시킨 쓰레드 실행
         System.out.println("Dishes:"+dishes.toString());
     }
 
@@ -75,7 +75,7 @@ class Table {
                 for (int i = 0; i < dishes.size(); i++) {
                     if (dishName.equals(dishes.get(i))) {
                         dishes.remove(i);
-                        notify();
+                        notify(); // 대기시킨 쓰레드 실행
                         return;
                     }
                 } //for

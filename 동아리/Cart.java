@@ -6,6 +6,8 @@ public class Cart {
     String user;
     LinkedList<Item> items = new LinkedList<Item>();
 
+
+
     public Cart(String user) { //객체생성 도와주는 거
         this.user = user;
     }

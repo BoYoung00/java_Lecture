@@ -25,7 +25,6 @@ public class Shopping {
     }
 
     public Cart rentCart() {
-
         System.out.println("------------------");
         System.out.print("임대할 소유자 이름 입력 : ");
         String name = scan.next();
@@ -60,7 +59,7 @@ public class Shopping {
         System.out.println("3. 카트 상품 제거");
         System.out.println("4. 카트 상품 출력");
         System.out.println("5. 카트 관련 동작 종료");
-        System.out.printf("키트 동작 입력 : ");
+        System.out.printf("카트 동작 입력 : ");
         int select = scan.nextInt();
 
         return select;

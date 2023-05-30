@@ -5,9 +5,9 @@ class Item {
     private int count; //수량
     private int price; //가격
 
-    public Item(String productName, int quantity, int price) {
+    public Item(String productName, int count, int price) {
         this.productName = productName;
-        this.count = quantity;
+        this.count = count;
         this.price = price;
     }
 

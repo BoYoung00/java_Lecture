@@ -2,7 +2,7 @@ package 자바과제2023.ShoppingMall;
 
 import java.util.LinkedList;
 
-public class Cart {
+class Cart {
     private String user; //카트 소유자
     private LinkedList<Item> items = new LinkedList<>(); //카드에 저장된 아이템
 
@@ -23,7 +23,7 @@ public class Cart {
                 return;
             }
         }
-        items.add(new Item(name, price, count));
+        items.add(new Item(name, count, price));
     }
 
     // 장바구니 아이템 제거
@@ -62,9 +62,10 @@ public class Cart {
         int index = 0;
         for (Item item : items) {
             index++;
-            System.out.println("["+index+"] 상품 이름 : " + item.getProductName());
-            System.out.println("["+index+"] 상품 가격 : " + item.getPrice());
-            System.out.println("["+index+"] 상품 수량 : " + item.getCount());
+            System.out.println("<"+index+"번 상품>");
+            System.out.println("상품 이름 : " + item.getProductName());
+            System.out.println("상품 가격 : " + item.getPrice());
+            System.out.println("상품 수량 : " + item.getCount());
         }
     }
 

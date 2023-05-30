@@ -3,7 +3,7 @@ package 자바과제2023.ShoppingMall;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Shopping {
+class Shopping {
     private Scanner in = new Scanner(System.in);
     private LinkedList<Cart> carts = new LinkedList<>();
 

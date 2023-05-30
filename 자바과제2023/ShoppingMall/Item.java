@@ -1,6 +1,6 @@
 package 자바과제2023.ShoppingMall;
 
-public class Item {
+class Item {
     private String productName; //제품명
     private int count; //수량
     private int price; //가격

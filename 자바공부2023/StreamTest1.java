@@ -36,7 +36,7 @@ public class StreamTest1 {
         Stream<Integer> intIter = Stream.iterate(1, n-> n+2); // 2++ 무한출력
         intIter.limit(10).forEach(System.out::println);
 
-        //generate(Supplier s) : 주기만 하는 것 입력 X, 출력 O
+        // generate(Supplier s) : 주기만 하는 것 입력 X, 출력 O
         Stream<Integer> oneStream = Stream.generate(()->1); //1 무한 출력
         oneStream.limit(10).forEach(System.out::println);
     }

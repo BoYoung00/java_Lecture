@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+// Set : 중복X, 정렬O, 검색과 정렬에 유리 (이진탐색트리)
 public class TreeSetTest {
     public static void main(String[] args) {
         Set set1 = new TreeSet(); // 범위 검색, 정렬. 정렬 필요 없음
@@ -16,7 +17,7 @@ public class TreeSetTest {
         System.out.println(set2);
 
         TreeSet set3 = new TreeSet();
-        set3.add(new Integer(1)); // Intefer은 Comparable을 구현한 클래스이기 때문에 그냥 add 해줘도 된다
+        set3.add(new Integer(1)); // Integer은 Comparable을 구현한 클래스이기 때문에 그냥 add 해줘도 된다
         System.out.println(set3);
         int [] score = {80,95,50,35,45,65,10,100};
         for (int i = 0; i < score.length; i++) {
@@ -41,7 +42,7 @@ class Test implements Comparable {
     }
 }
 
-//비교 기준 없음 경우
+//비교 기준 없을 경우
 class Test2 {}
 // Test2에는 그 기준이 없기 때문에 TreeSet을 선언할 때 기준을 객체 추가 해야한다.
 // 따라서 밑에 TestComp를 만들어 기준을 정해줌

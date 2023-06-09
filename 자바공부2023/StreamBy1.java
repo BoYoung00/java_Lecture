@@ -46,12 +46,8 @@ class StudentBy {
 
     @Override
     public String toString() {
-        return '[' + name +
-                ", " + isMale +
-                ", " + hak +
-                ", " + ban +
-                ", " + score +
-                ']';
+        return String.format("[%s, %s, %d학년 %d반, %3d점]",
+                name, isMale ? "남" : "여", hak, ban, score);
     }
     // gropingBy()에서 사용
     enum Level { HIGH, MID, LOW } // 성적을 상, 중, 하 세 단계로 분류

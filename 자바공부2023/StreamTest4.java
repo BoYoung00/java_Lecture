@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.stream.Stream;
 
 // 중간 연산자
-// map() 파일 확장자를 중복없이 빼내기
-// peek() 중간에 출력해서 확인 (forEach와 비슷.)
+// map() : 어떤 조건을 이용하여 값을 중복없이 빼내기
+// peek() : 중간에 출력해서 확인 (forEach와 비슷.)
 public class StreamTest4 {
     public static void main(String[] args) {
         File[] fileArr = {new File("Ex1.java"), new File("Ex1.bak"),

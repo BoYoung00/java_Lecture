@@ -1,4 +1,4 @@
-package 자바강의2023;
+package 자바강의2023.중간시험;
 
 class StdInfo {
     private String name;

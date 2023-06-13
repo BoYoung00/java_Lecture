@@ -16,7 +16,7 @@ public class DataStreamDemo {
 			dos.writeInt(1);
 			dos.writeUTF("one");
 			
-			dos.flush();
+			dos.flush(); // dos에 write 시켜준다. 없으면 안 시켜줌
 			
 			System.out.println(dis.readDouble());
 			System.out.println(dis.readInt());

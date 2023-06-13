@@ -4,7 +4,9 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
-// Set : 중복X, 정렬O, 검색과 정렬에 유리 (이진탐색트리)
+// Set : 중복X, 순서X, 자동 정렬
+// TreeSet : 이진탐색트리, 정렬을 해줘서 검색에 유리하다
+// [+참고] LinkedHashSet : Set에 순서 부여
 public class TreeSetTest {
     public static void main(String[] args) {
         Set set1 = new TreeSet(); // 범위 검색, 정렬. 정렬 필요 없음

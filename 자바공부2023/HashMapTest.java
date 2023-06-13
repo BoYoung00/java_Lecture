@@ -4,15 +4,22 @@ import java.util.*;
 
 import static java.util.Collections.*;
 
+// Map : key, value
+// 순차X
+// HashMap : 많은 양의 데이터 검색 가능
+// Map.Entry<> : Map 형태의 인터페이스 만듦
 public class HashMapTest {
     public static void main(String[] args) {
         HashMapTest h = new HashMapTest();
-        h.dataList();
+        // h.dataList();
+        h.scoreList();
+        // h.login();
     }
 
+    // 로그인 기능
     public void login() {
         HashMap map = new HashMap();
-        map.put("id", "1234");
+        map.put("id", "1234"); // 추가
         map.put("asdf", "1111");
         map.put("asdf", "2222");
 
@@ -39,13 +46,14 @@ public class HashMapTest {
         }
     }
 
+    // 명단, 점수, 총점, 최고점수, 최저점수 출력
     public void scoreList() {
         HashMap map = new HashMap();
         map.put("김보영", new Integer(90));
         map.put("이두호", new Integer(100));
         map.put("김이응애", new Integer(80));
 
-        Set set = map.entrySet();
+        Set set = map.entrySet(); // 키와 값을 set으로 변환
         Iterator it = set.iterator();
 
         while (it.hasNext()) {
@@ -53,7 +61,7 @@ public class HashMapTest {
             System.out.println("이름 : "+e.getKey());
         }
 
-        set = map.keySet();
+        set = map.keySet(); // 키를 set으로 변환
         System.out.println("참가자 명단 : "+set);
 
         Collection values = map.values();
@@ -71,6 +79,7 @@ public class HashMapTest {
         System.out.println("최저점수 : "+Collections.min(values));
     }
 
+    // 중복 알파벳 세기
     public void dataList() {
         String[] data = {"A","K","A","K","D","K","A","K","K","K","Z","D"};
 

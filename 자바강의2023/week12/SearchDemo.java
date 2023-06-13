@@ -11,7 +11,7 @@ public class SearchDemo {
 		
 		Collections.sort(list);
 		System.out.println(list);
-		int i =Collections.binarySearch(list, "돌");
+		int i =Collections.binarySearch(list, "보라"); // 검색해서 해당하는 값을 인덱스 번호 반환
 		System.out.println(i);
 	}
 }

@@ -13,7 +13,7 @@ public class ListDemo {
 		List<String> animals2 = Arrays.asList(animals1);
 		Iterator<String> iterator = animals2.iterator();
 		while (iterator.hasNext())
-			System.out.println(iterator.next() + " ");
+			System.out.print(iterator.next() + " ");
 		System.out.println();
 		
 		animals2.set(1, "앵무새");
@@ -21,14 +21,14 @@ public class ListDemo {
 		// animals2.add("늑대");
 		
 		for (String s : animals2) 
-			System.out.println(s + " ");
+			System.out.print(s + " ");
 		System.out.println();
 		
 		// Collection 인터페이스를 구현한 클래스의 객체 생성, 정렬, 검색 등의 기능을 효율적으로 수행할 수 있도록 지원하는 유틸리티 클래스
 		Collections.sort(animals2);
 		String[] animals3 = animals2.toArray(new String[0]);
 		for (int i = 0; i < animals3.length; i++) 
-			System.out.println(animals3[i] + " ");
+			System.out.print(animals3[i] + " ");
 		System.out.println();
 	}
 }

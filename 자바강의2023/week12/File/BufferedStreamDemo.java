@@ -21,7 +21,7 @@ public class BufferedStreamDemo {
 				bos.write(b);
 				
 			}
-			bos.flush();
+			bos.flush(); //비우기
 		} catch (IOException e) {}
 		
 		end = System.nanoTime();

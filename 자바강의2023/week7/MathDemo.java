@@ -1,7 +1,7 @@
 package 자바강의2023.week7;
 
 
-public class MathDemo {
+public class  MathDemo {
 
 	public static void main(String[] args) {
 		System.out.println("Math.pow(2,8) : " + Math.pow(2,8));

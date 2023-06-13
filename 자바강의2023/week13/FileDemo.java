@@ -15,9 +15,9 @@ public class FileDemo {
 		
 		for(File f : fs) {
 			name = f.getName(); //파일이름
-			long time = f.lastModified(); 
-			cal.setTimeInMillis(time);
-			if (f.isDirectory())
+			long time = f.lastModified(); // 마지막 저장 시간
+			cal.setTimeInMillis(time); // 날짜로 변경시켜줌
+			if (f.isDirectory()) // f가 폴더면
 				System.out.printf("%-15s <DIR>[%d년%d월%d일]%n", name, cal.get(Calendar.YEAR),
 						Calendar.MONTH+1, cal.get(Calendar.DAY_OF_MONTH));
 			else 

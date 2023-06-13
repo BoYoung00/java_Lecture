@@ -13,7 +13,7 @@ class Mouse {
 	
 }
 
-class Keyboard {
+class  Keyboard {
 	String name;
 
 	public Keyboard(String name) {

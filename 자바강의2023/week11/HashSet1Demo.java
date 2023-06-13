@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+
+// Set : 순서X, 중복X, 자동 정렬
+// HashSet : Hash 알고리즘 이용
 public class HashSet1Demo {
 	public static void main(String[] args) {
 		String[] fruits = {"사과", "바나나", "포도", "수박"};

@@ -10,7 +10,7 @@ public class EtcDemo {
 		Collections.sort(list2);
 		
 		for (String fruit : list2) {
-			System.out.printf("%s : %d\n", fruit, Collections.frequency(list1, fruit));
+			System.out.printf("%s : %d\n", fruit, Collections.frequency(list1, fruit)); // counting
 		}
 	}
 }

@@ -9,11 +9,11 @@ public class CopyFileDemo {
 		String input = "c:\\Temp\\org.txt";
 		String output = "c:\\Temp\\dup.txt";
 		
-		try (FileInputStream fis = new FileInputStream(input);
-			 FileOutputStream fos = new FileOutputStream(output)){
+		try (FileInputStream fis = new FileInputStream(input); //가져오기
+			 FileOutputStream fos = new FileOutputStream(output)){ //쓰기
 			int c;
 			
-			while((c = fis.read()) != -1)
+			while((c = fis.read()) != -1) // 다 읽으면 -1 반환
 				fos.write(c);
 		} catch (IOException e) {
 			// TODO: handle exception
